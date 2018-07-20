@@ -6,10 +6,24 @@ CORS(app)
 
 @app.route('/books')
 def book_list():
-  books = [{
-    'id': 1,
-    'title': 'JavaScript - The Complete Guide'
-  }]
+  books = [
+    {
+      'id': 1,
+      'title': 'JavaScript - The Complete Guide',
+      'author': {
+        'firstName': 'Alexander',
+        'lastName': 'Great'
+      }
+    },
+    {
+      'id': 2,
+      'title': 'Java - The New Beginning',
+      'author': {
+        'firstName': 'Frances',
+        'lastName': 'Ong'
+      }
+    }
+  ]
   response = jsonify(books)
   response.status_code = 200
   return response
