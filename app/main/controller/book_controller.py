@@ -1,3 +1,4 @@
+from flask import request
 from flask_restplus import Resource, Namespace, fields
 
 ns = Namespace('books', description='books related operations')
@@ -21,5 +22,8 @@ class BookList(Resource):
         'title': 'Java - The New Beginning'
       }
     ]
+    if (len(request.args) != 0):
+      title = request.args.get("title")
+      print('title in query string is: ', title)
     return books
 
