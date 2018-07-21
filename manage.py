@@ -6,6 +6,7 @@ from pdb import set_trace
 # When regular package imported, __init__.py file is implicitly executed, and the objects it defines are bound to names in the package’s namespace
 # thus, these imports are within __init__.py
 from app.main import create_app, db
+from app.main.model import book
 
 app = create_app(os.getenv('APP_ENV') or 'dev')
 
