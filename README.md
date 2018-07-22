@@ -33,8 +33,12 @@ export APP_ENV=test
 
 ## Prerequisites
 ```
+database: mysql@5.7
+tools: python3, pip3
+
 // For MacOS Sierra
 brew install mysql@5.7
+
 ```
 
 ## Setup
@@ -42,6 +46,7 @@ brew install mysql@5.7
 1. Run the following
 ```
 pip3 install -r requirements.txt
+./scripts/configure
 python3 manage.py run
 ```
 
@@ -53,4 +58,4 @@ Fixing mysql set-up (complete removal and reinstall)
 ```
 
 ## TODO
-- add versioning to API
+

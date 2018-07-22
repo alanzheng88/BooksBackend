@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DIR="${PWD}/scripts"
+
+. "${DIR}/db-initial-setup.sh"
+python3 manage.py db upgrade
+. "${DIR}/seed.sh"
+
