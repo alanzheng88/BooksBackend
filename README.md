@@ -45,6 +45,10 @@ brew install mysql@5.7
 pip3 install -r requirements.txt
 ./scripts/configure
 python3 manage.py run
+
+- App will be running on localhost:5000
+- Books information accessed via http://localhost:5000/books
+- Go to http://localhost:5000 to see sample calls via Swagger
 ```
 
 ## Issues
