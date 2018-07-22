@@ -19,8 +19,7 @@ BEGIN
   DECLARE NUMBER_OF_ENTRIES INT DEFAULT 1000;
   -- values which can change ends here
 
-  DECLARE NUMBER_OF_AUTHOR_ENTRIES INT DEFAULT 4;
-  -- SET NUMBER_OF_AUTHOR_ENTRIES = (SELECT COUNT(*) FROM author);
+  DECLARE NUMBER_OF_AUTHOR_ENTRIES INT;
 
   DECLARE i INT;
   -- start count at number of books in the database
@@ -29,6 +28,7 @@ BEGIN
   -- set new maximum given current number of books in database
   -- because we want NUMBER_ENTRIES entries created
   SET NUMBER_OF_ENTRIES = NUMBER_OF_ENTRIES + i;
+  SET NUMBER_OF_AUTHOR_ENTRIES = (SELECT COUNT(*) FROM author);
 
   -- insert book entries
   WHILE i < NUMBER_OF_ENTRIES DO
