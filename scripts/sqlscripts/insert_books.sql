@@ -28,6 +28,7 @@ BEGIN
   -- set new maximum given current number of books in database
   -- because we want NUMBER_ENTRIES entries created
   SET NUMBER_OF_ENTRIES = NUMBER_OF_ENTRIES + i;
+  -- get count to determine range for author_id
   SET NUMBER_OF_AUTHOR_ENTRIES = (SELECT COUNT(*) FROM author);
 
   -- insert book entries
@@ -35,9 +36,9 @@ BEGIN
 	-- use existing book titles to create new book title
     SET @bookTitle = (SELECT CONCAT(title, i) 
                       FROM (SELECT * FROM book 
-                      LIMIT NUMBER_OF_OLD_BOOK_ENTRIES) bTable 
+                            LIMIT NUMBER_OF_OLD_BOOK_ENTRIES) bTable 
                       ORDER BY RAND() LIMIT 1);
-    -- 1 <= authorId <= 4 (number of authors)
+    -- 1 <= authorId <= number of authors
     SELECT @authorId := FLOOR(1 + (RAND() * NUMBER_OF_AUTHOR_ENTRIES)) AS id;
 
     INSERT IGNORE INTO book
