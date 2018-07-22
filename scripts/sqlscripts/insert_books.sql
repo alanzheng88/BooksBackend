@@ -33,10 +33,10 @@ BEGIN
   -- insert book entries
   WHILE i < NUMBER_OF_ENTRIES DO
 	-- use existing book titles to create new book title
-	SET @bookTitle = (SELECT CONCAT(title, i) 
-						FROM (SELECT * FROM book 
-								LIMIT NUMBER_OF_OLD_BOOK_ENTRIES) bTable 
-						ORDER BY RAND() LIMIT 1);
+    SET @bookTitle = (SELECT CONCAT(title, i) 
+                      FROM (SELECT * FROM book 
+                      LIMIT NUMBER_OF_OLD_BOOK_ENTRIES) bTable 
+                      ORDER BY RAND() LIMIT 1);
     -- 1 <= authorId <= 4 (number of authors)
     SELECT @authorId := FLOOR(1 + (RAND() * NUMBER_OF_AUTHOR_ENTRIES)) AS id;
 
@@ -44,8 +44,8 @@ BEGIN
       (title, author_id)
     VALUES
       (@bookTitle, @authorId);
-
-	SET i = i + 1;
+      
+    SET i = i + 1;
     
   END WHILE;
 
