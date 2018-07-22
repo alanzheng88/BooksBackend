@@ -1,2 +1,2 @@
-from .. import db
+from app.main import db
 from . import *

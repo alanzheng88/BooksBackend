@@ -19,9 +19,6 @@ Webservice to search a database of books with implementation organized using a f
 └── requirements.txt
 |-- manage.py (application entry point)
 
-*** Standards ***
-- use relative paths when referencing other files within package (app directory is an exception)
-e.g: relative: <.somefilename>, absolute: <app.main.>
 ```
 
 ## Environments

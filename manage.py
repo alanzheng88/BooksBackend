@@ -1,13 +1,13 @@
 import os
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from pdb import set_trace
+#from pdb import set_trace
 
 # When regular package imported, __init__.py file is implicitly executed, and the objects it defines are bound to names in the package’s namespace
 # thus, these imports are within __init__.py
 from app.main import create_app, db
 
-# import models
+# manager needs to detect our models
 import app.main.model
 
 app = create_app(os.getenv('APP_ENV') or 'dev')

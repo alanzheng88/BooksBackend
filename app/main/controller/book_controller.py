@@ -1,9 +1,10 @@
-from flask import request
-from flask_restplus import Resource, Namespace, fields
+from flask_restplus import Resource, Namespace, fields, reqparse
+from app.main.service.book_service import get_all_books
+#from pdb import set_trace
 
 ns = Namespace('books', description='books related operations')
 
-book = ns.model('Book', {
+book = ns.model('book', {
   'id': fields.Integer(required=True, description='Id'),
   'title': fields.String(required=True, description='Book Title')
 })
@@ -11,19 +12,11 @@ book = ns.model('Book', {
 @ns.route('/')
 class BookList(Resource):
   @ns.marshal_with(book)
-  def get(self): 
-    books = [
-      {
-        'id': 1,
-        'title': 'JavaScript - The Complete Guide'
-      },
-      {
-        'id': 2,
-        'title': 'Java - The New Beginning'
-      }
-    ]
-    if (len(request.args) != 0):
-      title = request.args.get("title")
-      print('title in query string is: ', title)
-    return books
+  def get(self):
+    parser = reqparse.RequestParser()
+    parser.add_argument('title', type=str, location='args')
+    args = parser.parse_args()
+    if (args.title is not None):
+      print('title in query string is: ', args.title)
+    return get_all_books()
 
