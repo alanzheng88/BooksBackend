@@ -1,7 +1,7 @@
 from . import db
 from app.main.model.book import Book
 from app.main.model.author import Author
-from pdb import set_trace
+# from pdb import set_trace
 
 def get_all_books():
   return Book.query.all()

@@ -59,4 +59,3 @@ Fixing mysql set-up (complete removal and reinstall)
 ```
 
 ## TODO
-
