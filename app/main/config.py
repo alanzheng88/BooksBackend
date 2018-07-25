@@ -9,6 +9,8 @@ class Config:
   SECRET_KEY = os.getenv('SECRET_KEY', 'my_precious_secret_key')
   DEBUG = False
   SQLALCHEMY_TRACK_MODIFICATIONS = False
+  RESTPLUS_MASK_SWAGGER = False
+  SWAGGER_UI_DOC_EXPANSION = 'full'
 
 class DevelopmentConfig(Config):
   DEBUG = True
