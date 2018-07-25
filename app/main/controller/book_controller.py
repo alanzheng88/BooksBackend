@@ -1,23 +1,22 @@
 from flask_restplus import Resource, Namespace, fields, reqparse
 from app.main.service.book_service import get_all_books, get_book
 from werkzeug.exceptions import BadRequest
-from pdb import set_trace
+from .author_controller import author
+#from pdb import set_trace
 
 ns = Namespace(
-  'books', 
-  description='books related operations'
+  name = 'books', 
+  description = 'books related operations'
 )
 
-author = ns.model('author', {
-  'id': fields.Integer(required = True, description = 'Author Id'),
-  'first_name': fields.String,
-  'last_name': fields.String,
-  'email': fields.String
-})
-
 book = ns.model('book', {
-  'id': fields.Integer(required = True, description = 'Book Id'),
-  'title': fields.String(required = True, description = 'Book Title')
+  'id': fields.Integer(required=True, description='Book Id'),
+  'title': fields.String(required=True, description='Book Title'),
+  'author': {
+    'first_name': fields.String(attribute=lambda x: x.the_author.first_name),
+    'last_name': fields.String(attribute=lambda x: x.the_author.last_name),
+    'email': fields.String(attribute=lambda x: x.the_author.email)
+  }
 })
 
 @ns.route('/')
