@@ -22,14 +22,18 @@ class BookList(Resource):
   def get(self):
     parser = reqparse.RequestParser()
     parser.add_argument('title', type=str, location='args')
+    parser.add_argument('author', type=str, location='args')
     params = parser.parse_args()
     data = None
-    if (params.title is None):
-      print('getting all books')
-      data = get_all_books()
-    else:
+    if (params.title is not None):
       print('title in query string is: ', params.title)
       data = get_book('title', params.title)
+    elif (params.author is not None):
+      print('author in query string is: ', params.author)
+      data = get_book('author', params.author)
+    else:
+      print('getting all books')
+      data = get_all_books()
 
     return data
 
