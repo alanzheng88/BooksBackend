@@ -1,23 +1,11 @@
 from flask_restplus import Resource, Namespace, fields, reqparse
 from app.main.service.book_service import get_all_books, get_book
+from app.main.util.book_dto import BookDto
 from werkzeug.exceptions import BadRequest
-from .author_controller import author
 #from pdb import set_trace
 
-ns = Namespace(
-  name = 'books', 
-  description = 'books related operations'
-)
-
-book = ns.model('book', {
-  'id': fields.Integer(required=True, description='Book Id'),
-  'title': fields.String(required=True, description='Book Title'),
-  'author': {
-    'first_name': fields.String(attribute=lambda x: x.the_author.first_name),
-    'last_name': fields.String(attribute=lambda x: x.the_author.last_name),
-    'email': fields.String(attribute=lambda x: x.the_author.email)
-  }
-})
+ns = BookDto.ns
+_book = BookDto.book
 
 @ns.route('/')
 class BookList(Resource):
@@ -30,7 +18,7 @@ class BookList(Resource):
       200: 'List of books fetched successfully'
     }
   )
-  @ns.marshal_list_with(book)
+  @ns.marshal_list_with(_book)
   def get(self):
     parser = reqparse.RequestParser()
     parser.add_argument('title', type=str, location='args')
