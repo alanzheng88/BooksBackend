@@ -15,6 +15,7 @@ class Config:
 class DevelopmentConfig(Config):
   DEBUG = True
   SQLALCHEMY_DATABASE_URI = mysql_local_base
+  SQLALCHEMY_ECHO = True
 
 class TestingConfig(Config):
   DEBUG = True
