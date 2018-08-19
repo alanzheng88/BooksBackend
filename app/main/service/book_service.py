@@ -11,13 +11,19 @@ def __book_query():
               .join(Book.the_author) \
               .options(joinedload(Book.the_author))
 
-def get_all_books(limit):
-  return __book_query().limit(limit).all()
+def get_all_books(limit, afterId):
+  return __book_query() \
+          .order_by(Book.id) \
+          .filter(Book.id > afterId) \
+          .limit(limit) \
+          .all()
 
-def get_book(filter, value, limit):
+def get_book(filter, value, limit, afterId):
   if (filter == 'title'):
     bookQuery = __book_query() \
                   .filter(Book.title.like('%'+value+'%')) \
+                  .order_by(Book.id) \
+                  .filter(Book.id > afterId) \
                   .limit(limit)
     return bookQuery.all()
   elif (filter == 'author'):
@@ -29,6 +35,8 @@ def get_book(filter, value, limit):
                         or_(likeFirstName, likeLastName), 
                         likeEmail
                       )) \
+                      .order_by(Book.id) \
+                      .filter(Book.id > afterId) \
                       .limit(limit)
     return authorQuery.all()
   else:
