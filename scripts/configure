@@ -2,7 +2,6 @@
 
 DIR="${PWD}/scripts"
 
-. "${DIR}/db-initial-setup.sh"
-python3 manage.py db upgrade
+echo "$DATABASE_URL"
+DATABASE_URL=$DATABASE_URL python36 manage.py db upgrade
 . "${DIR}/seed.sh"
-

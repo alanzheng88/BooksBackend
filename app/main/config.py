@@ -1,7 +1,7 @@
 import os
 
-# mysql_local_base = os.environ['DATABASE_URL']
-mysql_local_base = 'mysql://bookuser:password1@localhost/book_db'
+mysql_local_base = os.environ['DATABASE_URL']
+#mysql_local_base = 'mysql://bookuser:password1@localhost/book_db'
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
