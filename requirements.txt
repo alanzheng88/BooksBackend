@@ -21,3 +21,6 @@ flask_migrate==2.2.1
 # Module for quickly building REST APIs 
 # (encourages best practices with minimal setup)
 flask_restplus==0.11.0
+
+# HTTP Server
+gunicorn==19.9.0
