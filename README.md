@@ -58,4 +58,3 @@ Fixing mysql set-up (complete removal and reinstall)
   - https://stackoverflow.com/questions/50874931/the-post-install-step-did-not-complete-successfully-mysql-mac-os-sierra
 ```
 
-## TODO
